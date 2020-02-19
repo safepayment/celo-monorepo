@@ -8,7 +8,7 @@ import { verifySignature } from '@celo/utils/lib/signatureUtils'
 import BigNumber from 'bignumber.js'
 import chalk from 'chalk'
 import { BaseCommand } from '../base'
-import { printValueMap } from './cli'
+import { printValueMapRecursive } from './cli'
 
 export interface CommandCheck {
   name: string
@@ -116,8 +116,8 @@ class CheckBuilder {
       this.withGovernance(async (g) => {
         const match = (await g.getProposalStage(proposalID)) === stage
         if (!match) {
-          const waitTimes = await g.timeUntilStages(proposalID)
-          printValueMap({ waitTimes })
+          const timeUntilStages = await g.timeUntilStages(proposalID)
+          printValueMapRecursive({ timeUntilStages })
         }
         return match
       })
