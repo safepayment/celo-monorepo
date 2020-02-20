@@ -87,8 +87,8 @@ USAGE
   $ celocli validatorgroup:register
 
 OPTIONS
-  --commission=commission                            (required) The share of the epoch rewards given to elected
-                                                     Validators that goes to the group.
+  --commission=commission                            (required) The share of the epoch rewards given to elected Validators that goes
+                                                     to the group.
 
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Address for the Validator Group
 
