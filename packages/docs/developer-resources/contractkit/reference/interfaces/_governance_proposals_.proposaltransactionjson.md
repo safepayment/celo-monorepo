@@ -1,17 +1,5 @@
 # Interface: ProposalTransactionJSON
 
-JSON encoding of a proposal transaction.
-
-Example:
-```json
-{
-  "contract": "Election",
-  "function": "setElectableValidators",
-  "args": [ "1", "120" ],
-  "value": "0"
-}
-```
-
 ## Hierarchy
 
 * **ProposalTransactionJSON**
@@ -32,7 +20,7 @@ Example:
 
 • **args**: *any[]*
 
-Defined in packages/contractkit/src/governance/proposals.ts:39
+*Defined in [packages/contractkit/src/governance/proposals.ts:26](https://github.com/celo-org/celo-monorepo/blob/master/packages/contractkit/src/governance/proposals.ts#L26)*
 
 ___
 
@@ -40,7 +28,7 @@ ___
 
 • **contract**: *[CeloContract](../enums/_base_.celocontract.md)*
 
-Defined in packages/contractkit/src/governance/proposals.ts:37
+*Defined in [packages/contractkit/src/governance/proposals.ts:24](https://github.com/celo-org/celo-monorepo/blob/master/packages/contractkit/src/governance/proposals.ts#L24)*
 
 ___
 
@@ -48,7 +36,7 @@ ___
 
 • **function**: *string*
 
-Defined in packages/contractkit/src/governance/proposals.ts:38
+*Defined in [packages/contractkit/src/governance/proposals.ts:25](https://github.com/celo-org/celo-monorepo/blob/master/packages/contractkit/src/governance/proposals.ts#L25)*
 
 ___
 
@@ -56,7 +44,7 @@ ___
 
 • **params**? : *Record‹string, any›*
 
-Defined in packages/contractkit/src/governance/proposals.ts:40
+*Defined in [packages/contractkit/src/governance/proposals.ts:27](https://github.com/celo-org/celo-monorepo/blob/master/packages/contractkit/src/governance/proposals.ts#L27)*
 
 ___
 
@@ -64,4 +52,4 @@ ___
 
 • **value**: *string*
 
-Defined in packages/contractkit/src/governance/proposals.ts:41
+*Defined in [packages/contractkit/src/governance/proposals.ts:28](https://github.com/celo-org/celo-monorepo/blob/master/packages/contractkit/src/governance/proposals.ts#L28)*

@@ -34,13 +34,13 @@ ARGUMENTS
   TOKEN  (StableToken) [default: StableToken] Token to report on
 
 OPTIONS
-  --denominator=denominator                          (required) [default: 1] Amount of cGLD equal to the numerator. Defaults to 1 if
-                                                     left blank
+  --denominator=denominator                          (required) [default: 1] Amount of cGLD equal to the numerator.
+                                                     Defaults to 1 if left blank
 
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Address of the oracle account
 
-  --numerator=numerator                              (required) Amount of the specified token equal to the amount of cGLD in the
-                                                     denominator
+  --numerator=numerator                              (required) Amount of the specified token equal to the amount of
+                                                     cGLD in the denominator
 
 EXAMPLES
   report StableToken --numerator 1.02 --from 0x8c349AAc7065a35B7166f2659d6C35D75A3893C1

@@ -15,13 +15,17 @@ USAGE
 OPTIONS
   -r, --role=vote|validator|attestation                (required) Role to delegate
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d    (required) Account Address
-  --signature=signature                                (required) Signature (a.k.a proof-of-possession) of the signer key
+
+  --signature=signature                                (required) Signature (a.k.a proof-of-possession) of the signer
+                                                       key
+
   --signer=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Account Address
 
 EXAMPLE
-  authorize --from 0x5409ED021D9299bf6814279A6A1411A7e866A631 --role vote --signer 0x6ecbe1db9ef729cbe972c83fb886247691fb6beb
-  --signature
-  0x1b9fca4bbb5bfb1dbe69ef1cddbd9b4202dcb6b134c5170611e1e36ecfa468d7b46c85328d504934fce6c2a1571603a50ae224d2b32685e84d4d1a1eebad8452eb
+  authorize --from 0x5409ED021D9299bf6814279A6A1411A7e866A631 --role vote --signer
+  0x6ecbe1db9ef729cbe972c83fb886247691fb6beb --signature
+  0x1b9fca4bbb5bfb1dbe69ef1cddbd9b4202dcb6b134c5170611e1e36ecfa468d7b46c85328d504934fce6c2a1571603a50ae224d2b32685e84d4d
+  1a1eebad8452eb
 ```
 
 _See code: [packages/cli/src/commands/account/authorize.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/account/authorize.ts)_
@@ -54,10 +58,13 @@ ARGUMENTS
 OPTIONS
   --address=address                                  (required) The address of the account you want to claim
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Addess of the account to set metadata for
-  --publicKey=publicKey                              The public key of the account that others may use to send you encrypted messages
+
+  --publicKey=publicKey                              The public key of the account that others may use to send you
+                                                     encrypted messages
 
 EXAMPLE
-  claim-account ~/metadata.json --address 0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d --from 0x47e172F6CfB6c7D01C1574fa3E2Be7CC73269D95
+  claim-account ~/metadata.json --address 0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d --from
+  0x47e172F6CfB6c7D01C1574fa3E2Be7CC73269D95
 ```
 
 _See code: [packages/cli/src/commands/account/claim-account.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/account/claim-account.ts)_
@@ -78,7 +85,8 @@ OPTIONS
   --url=https://www.celo.org                         (required) The url you want to claim
 
 EXAMPLE
-  claim-attestation-service-url ~/metadata.json --url http://test.com/myurl --from 0x47e172F6CfB6c7D01C1574fa3E2Be7CC73269D95
+  claim-attestation-service-url ~/metadata.json --url http://test.com/myurl --from
+  0x47e172F6CfB6c7D01C1574fa3E2Be7CC73269D95
 ```
 
 _See code: [packages/cli/src/commands/account/claim-attestation-service-url.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/account/claim-attestation-service-url.ts)_
@@ -206,13 +214,14 @@ USAGE
   $ celocli account:proof-of-possession
 
 OPTIONS
-  --account=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Address of the account that needs to proove possession of the
-                                                        signer key.
+  --account=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) Address of the account that needs to proove
+                                                        possession of the signer key.
 
   --signer=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d   (required) Address of the signer key to prove possession of.
 
 EXAMPLE
-  proof-of-possession --account 0x5409ed021d9299bf6814279a6a1411a7e866a631 --signer 0x6ecbe1db9ef729cbe972c83fb886247691fb6beb
+  proof-of-possession --account 0x5409ed021d9299bf6814279a6a1411a7e866a631 --signer
+  0x6ecbe1db9ef729cbe972c83fb886247691fb6beb
 ```
 
 _See code: [packages/cli/src/commands/account/proof-of-possession.ts](https://github.com/celo-org/celo-monorepo/tree/master/packages/cli/src/commands/account/proof-of-possession.ts)_

@@ -13,8 +13,11 @@ USAGE
   $ celocli exchange:dollars
 
 OPTIONS
-  --forAtLeast=10000000000000000000000               [default: 0] Optional, the minimum value of Celo Gold to receive in return
+  --forAtLeast=10000000000000000000000               [default: 0] Optional, the minimum value of Celo Gold to receive in
+                                                     return
+
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) The address with Celo Dollars to exchange
+
   --value=10000000000000000000000                    (required) The value of Celo Dollars to exchange for Celo Gold
 
 EXAMPLES
@@ -33,8 +36,11 @@ USAGE
   $ celocli exchange:gold
 
 OPTIONS
-  --forAtLeast=10000000000000000000000               [default: 0] Optional, the minimum value of Celo Dollars to receive in return
+  --forAtLeast=10000000000000000000000               [default: 0] Optional, the minimum value of Celo Dollars to receive
+                                                     in return
+
   --from=0xc1912fEE45d61C87Cc5EA59DaE31190FFFFf232d  (required) The address with Celo Gold to exchange
+
   --value=10000000000000000000000                    (required) The value of Celo Gold to exchange for Celo Dollars
 
 EXAMPLES
