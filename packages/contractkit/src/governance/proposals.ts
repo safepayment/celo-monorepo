@@ -1,18 +1,20 @@
-import { concurrentMap } from '@celo/utils/lib/async'
-import { keccak256 } from 'ethereumjs-util'
-import Contract from 'web3/eth/contract'
-import { Transaction, TransactionObject } from 'web3/eth/types'
-import { CeloContract } from '../base'
-import { obtainKitContractDetails } from '../explorer/base'
-import { BlockExplorer } from '../explorer/block-explorer'
-import { ABI as GovernanceABI } from '../generated/Governance'
-import { ContractKit } from '../kit'
-import { getAbiTypes } from '../utils/web3-utils'
-import { CeloTransactionObject, valueToString } from '../wrappers/BaseWrapper'
-import { hotfixToParams, Proposal, ProposalTransaction } from '../wrappers/Governance'
-import { setImplementationOnProxy } from './proxy'
 import * as inquirer from 'inquirer'
+
+import { CeloTransactionObject, valueToString } from '../wrappers/BaseWrapper'
+import { Proposal, ProposalTransaction, hotfixToParams } from '../wrappers/Governance'
+import { Transaction, TransactionObject } from 'web3/eth/types'
+
 import { ABIDefinition } from 'web3-eth-abi'
+import { BlockExplorer } from '../explorer/block-explorer'
+import { CeloContract } from '../base'
+import Contract from 'web3/eth/contract'
+import { ContractKit } from '../kit'
+import { ABI as GovernanceABI } from '../generated/Governance'
+import { concurrentMap } from '@celo/utils/lib/async'
+import { getAbiTypes } from '../utils/web3-utils'
+import { keccak256 } from 'ethereumjs-util'
+import { obtainKitContractDetails } from '../explorer/base'
+import { setImplementationOnProxy } from './proxy'
 
 export const HOTFIX_PARAM_ABI_TYPES = getAbiTypes(GovernanceABI as any, 'executeHotfix')
 
@@ -121,7 +123,9 @@ export class InteractiveProposalBuilder {
       const contractName = contractAnswer[contractPromptName] as CeloContract
       const contractABI = require('@celo/contractkit/lib/generated/' + contractName)
         .ABI as ABIDefinition[]
-      const methodNames = contractABI.map((def) => def.name!)
+      const methodNames = contractABI
+        .filter((def) => def.type === 'function' && def.stateMutability !== 'view')
+        .map((def) => def.name!)
 
       const functionPromptName = contractName + ' Function'
       const functionAnswer = await inquirer.prompt({
@@ -137,7 +141,7 @@ export class InteractiveProposalBuilder {
           name: functionInput.name,
           type: 'input',
           validate: () => {
-            // TODO: switch on user input and functionInput.type
+            // TODO(yorke): switch on user input and functionInput.type
             return true
           },
         })
@@ -158,6 +162,7 @@ export class InteractiveProposalBuilder {
       }
 
       try {
+        // use fromJsonTx as well-formed tx validation
         await this.builder.fromJsonTx(tx)
         transactions.push(tx)
       } catch (error) {
