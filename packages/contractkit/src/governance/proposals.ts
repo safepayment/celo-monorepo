@@ -1,19 +1,17 @@
-import * as inquirer from 'inquirer'
-
-import { CeloTransactionObject, valueToString } from '../wrappers/BaseWrapper'
-import { Proposal, ProposalTransaction, hotfixToParams } from '../wrappers/Governance'
-import { Transaction, TransactionObject } from 'web3/eth/types'
-
-import { ABIDefinition } from 'web3-eth-abi'
-import { BlockExplorer } from '../explorer/block-explorer'
-import { CeloContract } from '../base'
-import Contract from 'web3/eth/contract'
-import { ContractKit } from '../kit'
-import { ABI as GovernanceABI } from '../generated/Governance'
 import { concurrentMap } from '@celo/utils/lib/async'
-import { getAbiTypes } from '../utils/web3-utils'
 import { keccak256 } from 'ethereumjs-util'
+import * as inquirer from 'inquirer'
+import { ABIDefinition } from 'web3-eth-abi'
+import Contract from 'web3/eth/contract'
+import { Transaction, TransactionObject } from 'web3/eth/types'
+import { CeloContract } from '../base'
 import { obtainKitContractDetails } from '../explorer/base'
+import { BlockExplorer } from '../explorer/block-explorer'
+import { ABI as GovernanceABI } from '../generated/Governance'
+import { ContractKit } from '../kit'
+import { getAbiTypes } from '../utils/web3-utils'
+import { CeloTransactionObject, valueToString } from '../wrappers/BaseWrapper'
+import { hotfixToParams, Proposal, ProposalTransaction } from '../wrappers/Governance'
 import { setImplementationOnProxy } from './proxy'
 
 export const HOTFIX_PARAM_ABI_TYPES = getAbiTypes(GovernanceABI as any, 'executeHotfix')
@@ -111,7 +109,7 @@ export class InteractiveProposalBuilder {
   }
 
   async promptTransactions(num: number) {
-    let transactions: ProposalTransactionJSON[] = []
+    const transactions: ProposalTransactionJSON[] = []
     while (transactions.length < num) {
       console.log(`Transaction #${transactions.length + 1}:`)
       const contractPromptName = 'Celo Contract'
