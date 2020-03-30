@@ -6,6 +6,7 @@ import TextInput from '@celo/react-components/components/TextInput'
 import { validateInput, ValidatorKind } from '@celo/utils/src/inputValidation'
 import * as React from 'react'
 import { KeyboardType, TextInputProps } from 'react-native'
+import * as RNLocalize from 'react-native-localize'
 
 interface OwnProps {
   value: string
@@ -13,7 +14,7 @@ interface OwnProps {
   keyboardType: KeyboardType
   numberOfDecimals?: number
   placeholder?: string
-  lng?: string
+  decimalSeparator?: string
 }
 
 export interface PhoneValidatorProps {
@@ -44,11 +45,13 @@ export type ValidatorProps =
 
 export type ValidatedTextInputProps<V extends ValidatorProps> = OwnProps & V & TextInputProps
 
+const { decimalSeparator } = RNLocalize.getNumberFormatSettings()
+
 export default class ValidatedTextInput<V extends ValidatorProps> extends React.Component<
   ValidatedTextInputProps<V>
 > {
   onChangeText = (input: string): void => {
-    const validated = validateInput(input, this.props)
+    const validated = validateInput(input, { ...this.props, decimalSeparator })
     // Don't propagate change if new change is invalid
     if (this.props.value === validated) {
       return
@@ -60,13 +63,13 @@ export default class ValidatedTextInput<V extends ValidatorProps> extends React.
   }
 
   getMaxLength = () => {
-    const { numberOfDecimals, validator, value, lng } = this.props
+    const { numberOfDecimals, validator, value } = this.props
 
     if (validator !== ValidatorKind.Decimal || !numberOfDecimals) {
       return undefined
     }
 
-    const decimalPos = lng && lng.startsWith('es') ? value.indexOf(',') : value.indexOf('.')
+    const decimalPos = value.indexOf(decimalSeparator ?? '.')
     if (decimalPos === -1) {
       return undefined
     }
